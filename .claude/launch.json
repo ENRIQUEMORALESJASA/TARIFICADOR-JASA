@@ -2,6 +2,12 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "tarificador",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:\\Users\\enriq\\Documents\\GitHub", "-l", "3457", "--no-clipboard"],
+      "port": 3457
+    },
+    {
       "name": "dashboard",
       "runtimeExecutable": "npx",
       "runtimeArgs": ["serve", "C:\\Users\\emorales\\Documents\\GitHub\\DASHBOARD INCIDENCIAS", "-l", "3456", "--no-clipboard"],
