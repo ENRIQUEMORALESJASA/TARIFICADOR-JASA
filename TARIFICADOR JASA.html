@@ -276,7 +276,6 @@ Carreras · TSB · FNG · Transaher<br>
             <th style="width:36%;color:#AC1C57;font-weight:700">Destino</th>
             <th style="width:14%;color:#AC1C57;font-weight:700">Pallets</th>
             <th style="width:18%;color:#AC1C57;font-weight:700">Peso EUR (kg)</th>
-            <th style="width:10%;text-align:center;color:#AC1C57;font-weight:700">Declarado (€)</th>
             <th style="width:9%;text-align:center;color:#AC1C57;font-weight:700">Remontable</th>
             <th style="width:8%;text-align:center;color:#AC1C57;font-weight:700">ALDI</th>
             <th style="width:8%;text-align:center;color:#AC1C57;font-weight:700">Altura</th>
@@ -12321,7 +12320,6 @@ function planAddRow() {
   tr.innerHTML = '<td><select class="plan-sel" onchange="onPlanProvChange(this)">' + PLAN_OPTS + '</select><div class="plan-pt-wrap" style="display:none;margin-top:4px"><select class="plan-pt-sel" style="font-size:0.75rem;padding:0.3rem 0.5rem;width:100%;border-radius:6px;border:1.5px solid var(--border)">' + PLAN_PT_OPTS + '</select></div></td>' +
     '<td><input class="plan-inp" type="number" min="1" max="10" value="" autocomplete="off" style="width:55px"></td>' +
     '<td><input class="plan-inp" type="number" min="1" value="" placeholder="kg"></td>' +
-    '<td><input class="plan-inp" type="number" min="0" value="" placeholder="%" style="width:70px"></td>' +
     '<td style="text-align:center"><input type="checkbox" class="opt-check"></td>' +
     '<td style="text-align:center"><input type="checkbox" class="opt-check"></td>' +
     '<td style="text-align:center"><input type="checkbox" class="opt-check"></td>' +
@@ -12355,14 +12353,13 @@ function planCalcular() {
     }
     const nEur = parseInt(cells[1].querySelector('input').value) || 0;
     const pEur = parseFloat(cells[2].querySelector('input').value) || 0;
-    const declarado = parseFloat(cells[3].querySelector('input').value) || 0;
-    const remontable = cells[4].querySelector('input').checked;
-    const aldi = cells[5].querySelector('input').checked;
-    const altura = cells[6].querySelector('input').checked;
+    const remontable = cells[3].querySelector('input').checked;
+    const aldi = cells[4].querySelector('input').checked;
+    const altura = cells[5].querySelector('input').checked;
     if (!prov || pEur <= 0 || nEur <= 0) { err = true; return; }
     const logoCell = tr.querySelector('.plan-best-logo');
     if (logoCell) logoCell.innerHTML = '';
-    envios.push({ prov: prov, provName: provName, nEur: nEur, pEur: pEur, remontable: remontable, aldi: aldi, declarado: declarado, altura: altura, tr: tr });
+    envios.push({ prov: prov, provName: provName, nEur: nEur, pEur: pEur, remontable: remontable, aldi: aldi, declarado: 0, altura: altura, tr: tr });
   });
   if (!envios.length || err) { document.getElementById('plan-error-title').textContent = 'Datos incompletos'; document.getElementById('plan-error-msg').textContent = 'Revisa que todos los envíos tienen provincia, pallets y peso.'; document.getElementById('plan-error-box').style.display = 'block'; return; }
   const _hasDir=envios.some(function(e){return e.nEur>=5;});const _hasCap=envios.some(function(e){return e.nEur<5;});
